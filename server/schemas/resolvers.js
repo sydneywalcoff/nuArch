@@ -5,6 +5,10 @@ const resolvers = {
         todos: async () => {
             const todoData = await Todo.find({});
             return todoData;
+        },
+        todo: async (_, { _id }) => {
+            const todoData = await Todo.findOne({ _id });
+            return todoData;
         }
     }
 };
