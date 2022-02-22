@@ -16,6 +16,10 @@ const resolvers = {
             const todoData = await Todo.create(args);
             return todoData;
         },
+        deleteTodo: async (_, { _id }) => {
+            const deletedTodo = await Todo.findOneAndDelete({ _id });
+            return deletedTodo;
+        },
     },
 };
 
