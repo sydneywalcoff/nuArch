@@ -1,7 +1,9 @@
+const { Todo } = require('../models');
+
 const resolvers = {
     Query: {
-        helloWorld: () => {
-            return 'Hello World!'
+        todos: async () => {
+            
         }
     }
 };
