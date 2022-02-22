@@ -17,6 +17,7 @@ const startServer = async () => {
 
     console.log(`Use graphql at localhost:${PORT}${server.graphqlPath}`)
 };
+startServer();
 
 const PORT = process.env.PORT || 3001;
 
@@ -26,6 +27,5 @@ app.use(express.json());
 db.once('open', () => {
     app.listen(PORT, () => {
         console.log(`Now listening at PORT ${PORT}`);
-        startServer()
     });
 })
