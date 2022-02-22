@@ -1,10 +1,10 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-const TodoSchema = new Schema(
+const todoSchema = new Schema(
     {
         todo: {
             type: String,
-            require: true
+            require: true,
         },
         date: {
             type: Date,
@@ -12,11 +12,16 @@ const TodoSchema = new Schema(
         },
         completed: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
+    },
+    {
+        toJSON: {
+            getters: true,
+        },
     }
 );
 
-const Todo = model('Todo', TodoSchema);
+const Todo = model("Todo", todoSchema);
 
-modules.export = Todo;
+module.exports = Todo;
