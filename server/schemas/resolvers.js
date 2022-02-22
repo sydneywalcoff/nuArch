@@ -20,6 +20,13 @@ const resolvers = {
             const deletedTodo = await Todo.findOneAndDelete({ _id });
             return deletedTodo;
         },
+        editTodo: async (_, { _id, todo, completed }) => {
+            const selectedTodo = await Todo.findOneAndUpdate(
+                { _id },
+                { todo, completed }
+            );
+            return selectedTodo;
+        },
     },
 };
 
