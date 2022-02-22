@@ -1,4 +1,4 @@
-const { Todo } = require('../models');
+const { Todo } = require("../models");
 
 const resolvers = {
     Query: {
@@ -9,9 +9,14 @@ const resolvers = {
         todo: async (_, { _id }) => {
             const todoData = await Todo.findOne({ _id });
             return todoData;
-        }
-    }
+        },
+    },
+    Mutation: {
+        addTodo: async (_, args) => {
+            const todoData = await Todo.create(args);
+            return todoData;
+        },
+    },
 };
-
 
 module.exports = resolvers;
