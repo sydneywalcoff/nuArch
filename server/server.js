@@ -1,4 +1,5 @@
 const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
 
 const app = express();
 
@@ -10,5 +11,4 @@ app.use(express.json());
 
 app.listen(PORT, () => {
     console.log(`Now listening at PORT ${PORT}`);
-})
-
+});
