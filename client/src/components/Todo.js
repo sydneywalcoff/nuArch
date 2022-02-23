@@ -40,6 +40,7 @@ const Todo = () => {
           <tr>
             <th scope="col">Status</th>
             <th scope="col">Todo</th>
+            <th scope="col">Delete?</th>
           </tr>
         </thead>
         <tbody>
@@ -47,6 +48,7 @@ const Todo = () => {
             <tr key={i}>
               <td>{statusHandler(todo)}</td>
               <td>{todo.todo}</td>
+              <td>x</td>
             </tr>
           ))}
         </tbody>
