@@ -25,20 +25,21 @@ const Todo = () => {
     setInputValue(e.target.value);
   };
 
-  const closeHandler = ( _id) => {
-    const selectedTodoIndex = todos.findIndex(el => el._id === _id);
+  const closeHandler = (_id) => {
+    const selectedTodoIndex = todos.findIndex((el) => el._id === _id);
     const temp = [...todos];
-    temp.splice(selectedTodoIndex,1)
+    temp.splice(selectedTodoIndex, 1);
     setTodos(temp);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     const todoObj = {
+      _id: Math.random() * 100,
       todo: inputValue,
       completed: false,
     };
-    const temp = todos.slice();
+    const temp = [...todos];
     temp.push(todoObj);
     setTodos(temp);
     setInputValue("");
@@ -59,7 +60,14 @@ const Todo = () => {
             <tr key={i}>
               <td>{statusHandler(todo.completed)}</td>
               <td>{todo.todo}</td>
-              <td onClick={() => {closeHandler(todo._id)}} className="delete">-</td>
+              <td
+                onClick={() => {
+                  closeHandler(todo._id);
+                }}
+                className="delete"
+              >
+                -
+              </td>
             </tr>
           ))}
         </tbody>
