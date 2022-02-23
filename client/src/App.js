@@ -1,6 +1,17 @@
 import "./App.css";
 
 function App() {
+    const todos = [
+        {
+            todo: "walk dog",
+            completed: false,
+        },
+        {
+            todo: "do dishes",
+            completed: true,
+        },
+    ];
+
     return (
         <div className="wrapper">
             <header className="header">
@@ -10,18 +21,16 @@ function App() {
                 <div className="todo-container">
                     <h2 className="container-title">Todos</h2>
                     <table>
-                      <tr>
-                        <th scope="col">Status</th>
-                        <th scope="col">Todo</th>
-                      </tr>
-                      <tr>
-                        <td>[ ]</td>
-                        <td>walk dog</td>
-                      </tr>
-                      <tr>
-                        <td>[x]</td>
-                        <td>do dishes</td>
-                      </tr>
+                        <tr>
+                            <th scope="col">Status</th>
+                            <th scope="col">Todo</th>
+                        </tr>
+                        {todos.map((todo) => (
+                            <tr>
+                                <td>{todo.status === true ? '[x]' : '[ ]'}</td>
+                                <td>{todo.todo}</td>
+                            </tr>
+                        ))}
                     </table>
                 </div>
             </main>
