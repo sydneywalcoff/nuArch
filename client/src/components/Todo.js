@@ -27,9 +27,8 @@ const Todo = () => {
 
   const closeHandler = ( _id) => {
     const selectedTodoIndex = todos.findIndex(el => el._id === _id);
-    const temp = todos;
+    const temp = [...todos];
     temp.splice(selectedTodoIndex,1)
-    console.log(temp)
     setTodos(temp);
   };
 
@@ -39,7 +38,7 @@ const Todo = () => {
       todo: inputValue,
       completed: false,
     };
-    const temp = todos;
+    const temp = todos.slice();
     temp.push(todoObj);
     setTodos(temp);
     setInputValue("");
