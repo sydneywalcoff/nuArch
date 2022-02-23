@@ -38,9 +38,13 @@ table {
 
 th {
   text-align: start;
+  text-decoration: underline;
+  margin-bottom: 2%;
+  font-size: large;
 }
 
 tr {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 2%;
 }
