@@ -49,6 +49,11 @@ tr {
   padding-bottom: 2%;
 }
 
+td, th {
+  width: 100%;
+  text-align: center;
+}
+
 form {
   text-align: center;
   margin-top: 2%;
@@ -57,4 +62,8 @@ form {
 form input {
   margin-right: 1%;
   margin-left: 1%;
+}
+
+.delete {
+  cursor: pointer;
 }

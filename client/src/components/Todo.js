@@ -4,22 +4,34 @@ const Todo = () => {
   const [inputValue, setInputValue] = useState("");
   const initialTodos = [
     {
+      _id: "1234",
       todo: "walk dog",
       completed: false,
     },
     {
+      _id: "2345",
       todo: "do dishes",
       completed: true,
     },
   ];
   const [todos, setTodos] = useState(initialTodos);
 
-  const statusHandler = (todo) => {
-    if (todo.completed === false) return "[ ]";
+  const statusHandler = (completed) => {
+    if (completed === false) return "[ ]";
     else return "[x]";
   };
 
-  const changeHandler = (e) => [setInputValue(e.target.value)];
+  const changeHandler = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const closeHandler = ( _id) => {
+    const selectedTodoIndex = todos.findIndex(el => el._id === _id);
+    const temp = todos;
+    temp.splice(selectedTodoIndex,1)
+    console.log(temp)
+    setTodos(temp);
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -46,9 +58,9 @@ const Todo = () => {
         <tbody>
           {todos.map((todo, i) => (
             <tr key={i}>
-              <td>{statusHandler(todo)}</td>
+              <td>{statusHandler(todo.completed)}</td>
               <td>{todo.todo}</td>
-              <td>x</td>
+              <td onClick={() => {closeHandler(todo._id)}} className="delete">-</td>
             </tr>
           ))}
         </tbody>
