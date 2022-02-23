@@ -53,7 +53,7 @@ const Todo = () => {
           ))}
         </tbody>
       </table>
-      <form action="POST" onSubmit={submitHandler}>
+      <form onSubmit={submitHandler}>
         <input
           name="input"
           type="text"
