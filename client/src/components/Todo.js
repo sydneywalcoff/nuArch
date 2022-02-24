@@ -21,6 +21,14 @@ const Todo = () => {
     else return "[x]";
   };
 
+  const changeStatusHandler = (todo) => {
+    const selectedTodoIndex = todos.findIndex((el) => el._id === todo._id);
+    const newStatus = !todo.completed;
+    const temp = [...todos];
+    temp[selectedTodoIndex].completed = newStatus;
+    setTodos(temp)
+  };
+
   const changeHandler = (e) => {
     setInputValue(e.target.value);
   };
@@ -58,7 +66,7 @@ const Todo = () => {
         <tbody>
           {todos.map((todo, i) => (
             <tr key={i}>
-              <td>{statusHandler(todo.completed)}</td>
+              <td onClick={() => {changeStatusHandler(todo)}}>{statusHandler(todo.completed)}</td>
               <td>{todo.todo}</td>
               <td
                 onClick={() => {
