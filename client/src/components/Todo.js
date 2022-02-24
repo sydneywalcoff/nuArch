@@ -15,6 +15,7 @@ const Todo = () => {
     },
   ];
   const [todos, setTodos] = useState(initialTodos);
+  const [inputState, setInputState] = useState("add a todo");
 
   const statusHandler = (completed) => {
     if (completed === false) return "[ ]";
@@ -26,7 +27,7 @@ const Todo = () => {
     const newStatus = !todo.completed;
     const temp = [...todos];
     temp[selectedTodoIndex].completed = newStatus;
-    setTodos(temp)
+    setTodos(temp);
   };
 
   const changeHandler = (e) => {
@@ -42,6 +43,15 @@ const Todo = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if(inputState.includes('edit')) {
+        const tempInput = inputState;
+        const prevVal = tempInput.split(' ').splice(1,5).join(' ');
+        const selectedTodoIndex = todos.findIndex(el => el.todo === prevVal);
+        const temp = [...todos];
+        temp[selectedTodoIndex].todo = inputValue;
+        setTodos(temp);
+        return;
+    }
     const todoObj = {
       _id: Math.random() * 100,
       todo: inputValue,
@@ -66,8 +76,20 @@ const Todo = () => {
         <tbody>
           {todos.map((todo, i) => (
             <tr key={i}>
-              <td onClick={() => {changeStatusHandler(todo)}}>{statusHandler(todo.completed)}</td>
-              <td>{todo.todo}</td>
+              <td
+                onClick={() => {
+                  changeStatusHandler(todo);
+                }}
+              >
+                {statusHandler(todo.completed)}
+              </td>
+              <td
+                onClick={() => {
+                    setInputState(`edit ${todo.todo}`);
+                }}
+              >
+                {todo.todo}
+              </td>
               <td
                 onClick={() => {
                   closeHandler(todo._id);
@@ -84,7 +106,7 @@ const Todo = () => {
         <input
           name="input"
           type="text"
-          placeholder="add todo"
+          placeholder={inputState}
           onChange={changeHandler}
           value={inputValue}
         />
